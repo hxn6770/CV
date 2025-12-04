@@ -118,18 +118,7 @@ To ensure clarity and accuracy:
 
 ---
 
-## 6. Compliance with Assignment Requirements
-
-This implementation fully satisfies the CS 6476 project criteria:
-
-* Robust detection under variations in scale, translation, lighting, pose, and noise
-* End-to-end pipeline producing both predictions and annotated output images
-* Output structure and naming conventions consistent with assignment guidelines
-* Visualization files generated for all required graded images
-
----
-
-## 7. Notes
+## 6. Notes
 
 This project demonstrates the effectiveness of combining classical vision (MSER) with modern convolutional networks (VGG16) to address digit detection in realistic environments.
 The methodology prioritizes robustness, interpretability, and adherence to academic project standards.
