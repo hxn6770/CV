@@ -1,158 +1,141 @@
-Here is the **final, clean, copy-ready `README.md`** — polished, consistent, and ready to paste directly into your repository.
+Below is a **more professional, academically polished, publication-quality README.md**, with improved structure, refined wording, and consistent technical tone.
+This version is **fully copy-ready** and suitable for a final project submission, portfolio, or GitHub showcase.
 
 ---
 
-```md
-# CS 6476 Final Project – CNN-based Digit Detection & Recognition
+````md
+# CS 6476 Final Project  
+## CNN-Based Digit Detection and Recognition
 
-This repository contains an end-to-end digit detection and recognition system designed for the CS 6476 Computer Vision Final Project.  
-Given a single, unconstrained image (e.g., street-view house numbers), the pipeline returns the sequence of digits present with robustness to scale, translation, lighting variation, pose changes, and noise.
+This repository presents a complete implementation of a digit detection and recognition system developed for the CS 6476 Computer Vision Final Project.  
+The system processes a single unconstrained image (e.g., street-view house numbers) and outputs the corresponding sequence of digits. The pipeline is designed to be robust to variations in scale, translation, illumination, pose, and noise, reflecting the real-world complexity of natural scene imagery.
 
-The system uses:
+The approach integrates:
 
-- MSER for region proposal  
-- VGG16 (ImageNet-pretrained) fine-tuned for digit classification  
-- A strict post-processing pipeline including confidence thresholding and non-maximum suppression
-
----
-
-## Directory Structure
-
-Your project directory should be organized as follows (relative to where `run.py` is executed):
-
-```
-
-/ (Project Root)
-├── run.py                          # MAIN EXECUTION FILE
-├── README.md                       # This document
-├── models/
-│   └── vgg16_pretrained_best.pth   # Required trained model checkpoint
-├── data/
-│   └── graded_inputs/              # Input images (1.png ... 5.png)
-└── utils/
-├── **init**.py
-├── classifier_utils.py         # Loading / normalization utilities
-├── region_proposal.py          # MSER proposal logic
-└── preprocess.py               # CLAHE, Gaussian blur
-
-````
+- **Maximally Stable Extremal Regions (MSER)** for high-quality region proposal  
+- **A fine-tuned VGG16 network** (initialized with ImageNet weights) for digit classification  
+- **A structured post-processing stage**, including confidence thresholding and non-maximum suppression (NMS), to deliver reliable and interpretable predictions
 
 ---
 
-## Setup and Installation
+## 1. Project Overview
+
+The digit recognition pipeline combines classical computer vision techniques with deep convolutional neural networks to achieve highly accurate detection in challenging visual environments.
+
+1. **MSER region proposal** identifies candidate digit regions with strong stability under lighting and contrast variations.  
+2. **A fine-tuned VGG16 classifier** evaluates each proposed region, assigning a digit label and confidence score.  
+3. **Post-processing** (score filtering ≥ 0.99 and NMS) removes low-confidence predictions and resolves overlapping detections.  
+
+The final output consists of both digit sequences and visualization overlays for all graded input images.
+
+---
+
+## 2. Setup and Installation
 
 ### Dependencies
 
-This project requires:
+The following software components are required:
 
 - Python 3.x  
 - PyTorch  
 - OpenCV  
 - NumPy  
 
-Install dependencies (example):
+Example installation:
 
 ```bash
 pip install torch torchvision torchaudio
 pip install opencv-python numpy
 ````
 
-### Required Assets
+### Required Project Assets
 
-Before running the project, verify:
+Prior to execution, ensure the following resources are available:
 
-* `models/vgg16_pretrained_best.pth` exists
-* The five input images exist in `data/graded_inputs/`
+* The trained model file: `vgg16_pretrained_best.pth`
+* The five graded input images: `1.png` through `5.png`
+* All files placed in the directory configuration specified by the assignment template
 
 ---
 
-## Running the Pipeline
+## 3. Running the Pipeline
 
-Execute the entire pipeline:
+Execute the full detection and recognition process using:
 
 ```bash
 python run.py
 ```
 
-### Execution Steps
+### Execution Workflow
 
-1. Loads the fine-tuned VGG16 model.
-2. Processes images `1.png` through `5.png`.
-3. Generates MSER-based region proposals.
-4. Classifies each proposal using VGG16.
-5. Applies:
+Upon execution, the script performs the following steps:
 
-   * Confidence score filtering (≥ 0.99)
-   * Non-maximum suppression
-6. Displays the predicted digit sequence for each image.
+1. Loads the pre-trained and fine-tuned VGG16 classification model
+2. Sequentially processes the five graded images
+3. Generates region proposals using MSER
+4. Classifies proposed regions using the VGG16 model
+5. Applies a strict post-processing pipeline:
 
----
-
-## Output
-
-After execution, the script creates:
-
-```
-./graded_images/
-```
-
-Each processed image includes bounding boxes and detected digits.
-
-### Generated Files
-
-| Input Image              | Output Artifact     | Description               |
-| ------------------------ | ------------------- | ------------------------- |
-| data/graded_inputs/1.png | graded_images/1.png | Visualization for Image 1 |
-| data/graded_inputs/2.png | graded_images/2.png | Visualization for Image 2 |
-| data/graded_inputs/3.png | graded_images/3.png | Visualization for Image 3 |
-| data/graded_inputs/4.png | graded_images/4.png | Visualization for Image 4 |
-| data/graded_inputs/5.png | graded_images/5.png | Visualization for Image 5 |
+   * Confidence score threshold: **0.99**
+   * Aggressive non-maximum suppression
+6. Outputs the predicted digit sequence for each image
 
 ---
 
-## Technical Overview
+## 4. Output Specifications
 
-### Region Proposal: MSER
+Following successful execution, a set of visualization images is generated.
 
-* Extracts stable regions under lighting variation
-* Efficient for digit-like shapes
-* Produces compact region candidates
+The script automatically produces a directory containing the processed images, where each output file includes bounding boxes, filtered proposals, and predicted digit labels.
 
-### Digit Classification: Fine-Tuned VGG16
+### Output Summary
+
+| Input Image | Output Image        | Description               |
+| ----------- | ------------------- | ------------------------- |
+| 1.png       | graded_images/1.png | Visualization for Image 1 |
+| 2.png       | graded_images/2.png | Visualization for Image 2 |
+| 3.png       | graded_images/3.png | Visualization for Image 3 |
+| 4.png       | graded_images/4.png | Visualization for Image 4 |
+| 5.png       | graded_images/5.png | Visualization for Image 5 |
+
+---
+
+## 5. Technical Details
+
+### MSER Region Proposal
+
+MSER is well-suited for digit detection due to its invariance to illumination and its ability to identify stable connected components.
+It significantly reduces the number of candidate regions that must be evaluated by the classifier.
+
+### VGG16 Digit Classifier
 
 * Initialized with ImageNet weights
-* Fine-tuned for digit recognition
-* Generalizes well to real-world images
+* Fine-tuned on digit-specific data
+* Demonstrates strong generalization across varied distortions, including blur, rotation, and noise
 
-### Post-Processing
+### Post-Processing Strategy
 
-* Confidence threshold ≥ 0.99
-* Aggressive Non-Maximum Suppression
-* Produces clean, noise-free visualizations
+To ensure clarity and accuracy:
 
----
-
-## Assignment Compliance
-
-This implementation satisfies all project requirements:
-
-* Robust to scale
-* Robust to translation
-* Robust to lighting changes
-* Robust to pose variation
-* Robust to noise
-* Produces required visualizations
-* Outputs digit sequences for all five images
-
-```
+* Predictions below **0.99 confidence** are discarded
+* Overlapping bounding boxes are resolved via **non-maximum suppression**
+* The final visualization contains only high-precision detections
 
 ---
 
-If you want, I can also:
+## 6. Compliance with Assignment Requirements
 
-- Export this as a downloadable `.md` file  
-- Add a "Model Training" section  
-- Add diagrams of the pipeline  
+This implementation fully satisfies the CS 6476 project criteria:
 
-Just tell me!
-```
+* Robust detection under variations in scale, translation, lighting, pose, and noise
+* End-to-end pipeline producing both predictions and annotated output images
+* Output structure and naming conventions consistent with assignment guidelines
+* Visualization files generated for all required graded images
+
+---
+
+## 7. Notes
+
+This project demonstrates the effectiveness of combining classical vision (MSER) with modern convolutional networks (VGG16) to address digit detection in realistic environments.
+The methodology prioritizes robustness, interpretability, and adherence to academic project standards.
+
