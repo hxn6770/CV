@@ -1,9 +1,4 @@
-Below is a **more professional, academically polished, publication-quality README.md**, with improved structure, refined wording, and consistent technical tone.
-This version is **fully copy-ready** and suitable for a final project submission, portfolio, or GitHub showcase.
 
----
-
-````md
 # CS 6476 Final Project  
 ## CNN-Based Digit Detection and Recognition
 
