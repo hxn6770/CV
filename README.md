@@ -50,7 +50,13 @@ Prior to execution, ensure the following resources are available:
 * The trained model file: `vgg16_pretrained_best.pth`
 * The five graded input images: `1.png` through `5.png`
 * All files placed in the directory configuration specified by the assignment template
+Download the pretrained model weights from the Box link below and save them as:
 
+models/vgg16_pretrained_best.pth
+
+
+Model Weights Download Link:
+➡️ https://gatech.box.com/s/b69zglpo7rhp95dibgmptw7lvxi8409r
 ---
 
 ## 3. Running the Pipeline
@@ -117,17 +123,3 @@ To ensure clarity and accuracy:
 * The final visualization contains only high-precision detections
 
 ---
-
-## 6. Notes
-
-Download the pretrained model weights from the Box link below and save them as:
-
-models/vgg16_pretrained_best.pth
-
-
-Model Weights Download Link:
-➡️ https://gatech.box.com/s/b69zglpo7rhp95dibgmptw7lvxi8409r
-
-Then run:
-
-python run.py
