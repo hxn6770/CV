@@ -54,7 +54,6 @@ Download the pretrained model weights from the Box link below and save them as:
 
 models/vgg16_pretrained_best.pth
 
-
 Model Weights Download Link:
 ➡️ https://gatech.box.com/s/b69zglpo7rhp95dibgmptw7lvxi8409r
 ---
