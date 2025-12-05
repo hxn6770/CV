@@ -120,6 +120,14 @@ To ensure clarity and accuracy:
 
 ## 6. Notes
 
-This project demonstrates the effectiveness of combining classical vision (MSER) with modern convolutional networks (VGG16) to address digit detection in realistic environments.
-The methodology prioritizes robustness, interpretability, and adherence to academic project standards.
+Download the pretrained model weights from the Box link below and save them as:
 
+models/vgg16_pretrained_best.pth
+
+
+Model Weights Download Link:
+➡️ https://gatech.box.com/s/b69zglpo7rhp95dibgmptw7lvxi8409r
+
+Then run:
+
+python run.py
